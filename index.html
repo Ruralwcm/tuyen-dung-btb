@@ -53,6 +53,9 @@ select:disabled,input:disabled,textarea:disabled{background:#f7f7f7;color:#bbb;c
 .success-detail .val{color:#222;font-weight:600;flex:1}
 .btn-reset{margin-top:18px;padding:10px 28px;background:#1565c0;color:#fff;border:none;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer}
 .helper{font-size:11px;color:#999;margin-top:3px;font-style:italic}
+.field-row{display:flex;gap:12px;margin-bottom:0}
+.field-row .field{flex:1;margin-bottom:16px}
+.field-half{flex:1}
 </style>
 </head>
 <body>
@@ -91,19 +94,22 @@ select:disabled,input:disabled,textarea:disabled{background:#f7f7f7;color:#bbb;c
         <div class="err" id="errSDT">❌ Vui lòng nhập số điện thoại hợp lệ (10 số)</div>
       </div>
 
-      <div class="field">
-        <label>Ngày Tháng Năm Sinh <span class="req">*</span></label>
-        <input type="date" id="inputNgaySinh">
-        <div class="err" id="errNgaySinh">❌ Vui lòng chọn ngày sinh</div>
-      </div>
-
-      <div class="field">
-        <label>Giới Tính <span class="req">*</span></label>
-        <div class="radio-group">
-          <label class="radio-option"><input type="radio" name="gioiTinh" value="Nam"> Nam</label>
-          <label class="radio-option"><input type="radio" name="gioiTinh" value="Nữ"> Nữ</label>
+      <div class="field-row">
+        <div class="field field-half">
+          <label>Ngày Tháng Năm Sinh <span class="req">*</span></label>
+          <input type="date" id="inputNgaySinh">
+          <div class="err" id="errNgaySinh">❌ Vui lòng chọn ngày sinh</div>
         </div>
-        <div class="err" id="errGioiTinh">❌ Vui lòng chọn giới tính</div>
+        <div class="field field-half">
+          <label>Giới Tính <span class="req">*</span></label>
+          <select id="selGioiTinh">
+            <option value="">— Chọn —</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+          </select>
+          <div class="err" id="errGioiTinh">❌ Vui lòng chọn giới tính</div>
+        </div>
       </div>
 
       <div class="field">
@@ -114,10 +120,15 @@ select:disabled,input:disabled,textarea:disabled{background:#f7f7f7;color:#bbb;c
 
       <div class="field">
         <label>Trình Độ Học Vấn <span class="req">*</span></label>
-        <div class="radio-group">
-          <label class="radio-option"><input type="radio" name="hocVan" value="Tốt nghiệp THPT"> Tốt nghiệp THPT</label>
-          <label class="radio-option"><input type="radio" name="hocVan" value="Tốt nghiệp CĐ/ĐH/Trung cấp nghề"> Tốt nghiệp CĐ/ĐH/Trung cấp</label>
-        </div>
+        <select id="selHocVan">
+          <option value="">— Chọn trình độ —</option>
+          <option value="Chưa tốt nghiệp THPT">Chưa tốt nghiệp THPT</option>
+          <option value="Tốt nghiệp THPT">Tốt nghiệp THPT</option>
+          <option value="Trung cấp nghề">Trung cấp nghề</option>
+          <option value="Cao đẳng">Cao đẳng</option>
+          <option value="Đại học">Đại học</option>
+          <option value="Sau đại học">Sau đại học</option>
+        </select>
         <div class="err" id="errHocVan">❌ Vui lòng chọn trình độ học vấn</div>
       </div>
 
@@ -128,12 +139,13 @@ select:disabled,input:disabled,textarea:disabled{background:#f7f7f7;color:#bbb;c
 
       <div class="field">
         <label>Bạn Đăng Ký Ứng Tuyển Vị Trí Nào? <span class="req">*</span></label>
-        <div class="radio-group">
-          <label class="radio-option"><input type="radio" name="viTri" value="Nhân viên bán hàng Fulltime (8h/ngày)"> NVBH Fulltime (8h/ngày)</label>
-          <label class="radio-option"><input type="radio" name="viTri" value="Nhân viên bán hàng Parttime (4h/ngày)"> NVBH Parttime (4h/ngày)</label>
-          <label class="radio-option"><input type="radio" name="viTri" value="Cửa hàng phó"> Cửa hàng phó</label>
-          <label class="radio-option"><input type="radio" name="viTri" value="Cửa hàng trưởng"> Cửa hàng trưởng</label>
-        </div>
+        <select id="selViTri">
+          <option value="">— Chọn vị trí —</option>
+          <option value="Nhân viên bán hàng Fulltime (8h/ngày)">NVBH Fulltime (8h/ngày)</option>
+          <option value="Nhân viên bán hàng Parttime (4h/ngày)">NVBH Parttime (4h/ngày)</option>
+          <option value="Cửa hàng phó">Cửa hàng phó (CHPhó)</option>
+          <option value="Cửa hàng trưởng">Cửa hàng trưởng (CHT)</option>
+        </select>
         <div class="err" id="errViTri">❌ Vui lòng chọn vị trí ứng tuyển</div>
       </div>
 
@@ -310,10 +322,10 @@ document.getElementById('mainForm').addEventListener('submit',function(e){
   if(!sdt||!/^0\d{9}$/.test(sdt)){document.getElementById('errSDT').style.display='block';ok=false;}
   else document.getElementById('errSDT').style.display='none';
   var ngaySinh=req('inputNgaySinh','errNgaySinh');
-  var gioiTinh=reqRadio('gioiTinh','errGioiTinh');
+  var gioiTinh=req('selGioiTinh','errGioiTinh');
   var diaChi=req('inputDiaChi','errDiaChi');
-  var hocVan=reqRadio('hocVan','errHocVan');
-  var viTri=reqRadio('viTri','errViTri');
+  var hocVan=req('selHocVan','errHocVan');
+  var viTri=req('selViTri','errViTri');
   var tinh=req('selTinh','errTinh');
   var huyen=req('selHuyen','errHuyen');
   var nguon=req('selNguon','errNguon');
@@ -352,7 +364,6 @@ document.getElementById('mainForm').addEventListener('submit',function(e){
 
 function resetForm(){
   document.getElementById('mainForm').reset();
-  document.querySelectorAll('.radio-option').forEach(function(el){el.classList.remove('selected');});
   document.getElementById('selHuyen').innerHTML='<option value="">— Chọn Tỉnh trước —</option>';
   document.getElementById('selHuyen').disabled=true;
   document.getElementById('btnSubmit').disabled=false;
