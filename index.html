@@ -6,12 +6,14 @@
 <title>Tuyển Dụng WinMart+ Bắc Trung Bộ</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Arial,sans-serif;background:linear-gradient(145deg,#e3f2fd 0%,#f0f4f8 60%,#e8f0fe 100%);min-height:100vh;padding:16px 12px}
+body{font-family:'Segoe UI',Arial,sans-serif;background:linear-gradient(145deg,#e8f5ec 0%,#f5faf6 60%,#edf7f0 100%);min-height:100vh;padding:16px 12px}
 .container{max-width:600px;margin:0 auto}
-.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(25,118,210,0.10),0 1px 4px rgba(0,0,0,0.06);overflow:hidden}
-.card-header{background:linear-gradient(135deg,#1565c0 0%,#0d47a1 100%);color:#fff;padding:22px 22px 18px}
-.card-header h1{font-size:17px;font-weight:700;line-height:1.4}
-.card-header p{font-size:12px;opacity:0.85;margin-top:6px}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,150,63,0.12),0 1px 4px rgba(0,0,0,0.06);overflow:hidden}
+.card-header{background:linear-gradient(135deg,#00963f 0%,#007a32 100%);color:#fff;padding:0}
+.card-header-top{display:flex;align-items:center;gap:14px;padding:16px 20px 14px}
+.card-header-logo{background:#fff;border-radius:10px;padding:6px 10px;display:flex;align-items:center;flex-shrink:0}
+.card-header-text h1{font-size:16px;font-weight:700;line-height:1.4;color:#fff}
+.card-header-text p{font-size:11.5px;opacity:0.9;margin-top:4px;color:#fff}
 .card-body{padding:20px 22px}
 .field{margin-bottom:16px}
 .field label{display:block;font-size:12px;font-weight:700;color:#444;margin-bottom:6px}
@@ -25,7 +27,7 @@ select{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 11px center;padding-right:34px;cursor:pointer
 }
-select:focus,input:focus,textarea:focus{outline:none;border-color:#1565c0;box-shadow:0 0 0 3px rgba(21,101,192,0.11)}
+select:focus,input:focus,textarea:focus{outline:none;border-color:#00963f;box-shadow:0 0 0 3px rgba(0,150,63,0.11)}
 select:disabled,input:disabled,textarea:disabled{background:#f7f7f7;color:#bbb;cursor:not-allowed;border-color:#ebebeb}
 .radio-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .radio-option{display:flex;align-items:center;gap:6px;padding:8px 12px;border:1.5px solid #ddd;border-radius:8px;cursor:pointer;font-size:13px;transition:all .18s;flex:1;min-width:130px}
@@ -34,24 +36,24 @@ select:disabled,input:disabled,textarea:disabled{background:#f7f7f7;color:#bbb;c
 .radio-option.selected{border-color:#1565c0;background:#e8f0fe;font-weight:600}
 .err{font-size:11.5px;color:#e53935;margin-top:4px;display:none;font-weight:500}
 .divider{height:1px;background:#f0f0f0;margin:20px 0}
-.section-title{font-size:11px;font-weight:700;color:#1565c0;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid #e8f0fe}
-.submit-btn{width:100%;padding:13px;background:linear-gradient(135deg,#1565c0,#0d47a1);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .2s;margin-top:6px}
+.section-title{font-size:11px;font-weight:700;color:#00963f;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid #d4ede0}
+.submit-btn{width:100%;padding:13px;background:linear-gradient(135deg,#00963f,#007a32);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .2s;margin-top:6px}
 .submit-btn:hover{opacity:0.92}
 .submit-btn:disabled{background:#ccc;cursor:not-allowed;opacity:1}
 .loading-overlay{display:none;position:fixed;inset:0;background:rgba(255,255,255,0.85);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:12px}
 .loading-overlay.show{display:flex}
-.spinner{width:36px;height:36px;border:4px solid #e3f2fd;border-top-color:#1565c0;border-radius:50%;animation:spin .8s linear infinite}
+.spinner{width:36px;height:36px;border:4px solid #d4ede0;border-top-color:#00963f;border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .success-card{display:none;text-align:center;padding:40px 24px}
 .success-icon{font-size:52px;margin-bottom:12px}
-.success-title{font-size:20px;font-weight:700;color:#1565c0;margin-bottom:6px}
+.success-title{font-size:20px;font-weight:700;color:#00963f;margin-bottom:6px}
 .success-sub{font-size:13px;color:#666;margin-bottom:20px}
-.success-detail{background:#f5f9ff;border-radius:10px;padding:16px;text-align:left;font-size:13px}
-.success-detail .row{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid #e8f0fe}
+.success-detail{background:#f2faf5;border-radius:10px;padding:16px;text-align:left;font-size:13px}
+.success-detail .row{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid #d4ede0}
 .success-detail .row:last-child{border:none}
 .success-detail .lbl{color:#888;min-width:130px;font-size:12px;flex-shrink:0}
 .success-detail .val{color:#222;font-weight:600;flex:1}
-.btn-reset{margin-top:18px;padding:10px 28px;background:#1565c0;color:#fff;border:none;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-reset{margin-top:18px;padding:10px 28px;background:#00963f;color:#fff;border:none;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer}
 .helper{font-size:11px;color:#999;margin-top:3px;font-style:italic}
 .field-row{display:flex;gap:12px;margin-bottom:0}
 .field-row .field{flex:1;margin-bottom:16px}
@@ -67,8 +69,25 @@ select:disabled,input:disabled,textarea:disabled{background:#f7f7f7;color:#bbb;c
 
 <div class="card" id="mainCard">
   <div class="card-header">
-    <h1>📋 Nộp Đơn Ứng Tuyển<br>WinMart+ Bắc Trung Bộ</h1>
-    <p>Nhân viên Bán hàng / Cửa hàng Trưởng — Bắc Trung Bộ</p>
+    <div class="card-header-top">
+      <div class="card-header-logo">
+        <!-- WinMart+ logo SVG -->
+        <svg width="90" height="32" viewBox="0 0 220 80" xmlns="http://www.w3.org/2000/svg">
+          <!-- Green rounded rect background -->
+          <rect x="0" y="0" width="220" height="80" rx="8" fill="#00963f"/>
+          <!-- W shape (white) -->
+          <text x="12" y="58" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="52" fill="#ffffff" letter-spacing="-2">Win</text>
+          <!-- Mart text -->
+          <text x="100" y="58" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="52" fill="#ffffff">Mart</text>
+          <!-- Plus sign (red) -->
+          <text x="188" y="30" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="36" fill="#e30613">+</text>
+        </svg>
+      </div>
+      <div class="card-header-text">
+        <h1>📋 Nộp Đơn Ứng Tuyển<br>Bắc Trung Bộ</h1>
+        <p>Nhân viên Bán hàng / Cửa hàng Trưởng</p>
+      </div>
+    </div>
   </div>
   <div class="card-body">
     <form id="mainForm">
